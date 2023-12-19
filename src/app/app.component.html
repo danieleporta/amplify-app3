@@ -5,7 +5,9 @@
     let-signOut="signOut"
   >
     <h1>Welcome {{ user.username }}!</h1>
-<!--    <button (click)="sendCommand()">SendCommand</button>-->
     <button (click)="signOut()">Sign Out</button>
+    <br>
+    <button *ngIf='canShowArbitrage'>You can Read Arbitrage</button>
+    <button *ngIf='canCreateArbitrage'>You can Create Arbitrage</button>
   </ng-template>
 </amplify-authenticator>
