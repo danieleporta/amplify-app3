@@ -6,7 +6,9 @@ export const environment = {
   production: false,
   USERPOOLID: "eu-west-1_QfCDSmZyR",
   APPCLIENTID: "3hiqf50tvmf61a7098vtvirakk",
-  POLICYSTOREID: "FUCVQWemyZS2PykXBjegxh"
+  POLICYSTOREID: "FUCVQWemyZS2PykXBjegxh",
+  ACCESSKEYID: 'AKIA5LKTWQ4VHVQ2E7BH',
+  SECRETACCESSKEY: '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'
 };
 
 /*

@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.canCreateArbitrage = await this.auth.isPermit("Arbitrage", "Traders");
-    this.canShowArbitrage = await this.auth.isPermit("Arbitrage", "Developers");
+    this.canCreateArbitrage = await this.auth.isPermitted("Arbitrage", "Create");
+    this.canShowArbitrage = await this.auth.isPermitted("Arbitrage", "Read");
   }
 
 }

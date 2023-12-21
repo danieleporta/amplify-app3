@@ -8,6 +8,7 @@ import {
 import {environment} from "../environments/environment";
 import {Amplify, ResourcesConfig} from "aws-amplify";
 import {fetchAuthSession} from 'aws-amplify/auth';
+import {isAuthorizedFor} from "./aws-verified-permissions";
 
 @Injectable({
   providedIn: 'root'
@@ -41,12 +42,20 @@ export class AuthorizationService {
     }
   }
 
-  async isPermit(action: string, group: string ) {
+  async isPermitted(feature: string, action: string) {
     const payload = await this.payload();
     // @ts-ignore
     const groups: [string] = payload["cognito:groups"];
 
-    return groups && groups.includes(group);
+    if (groups) {
+      const promises = groups.map(async group => await isAuthorizedFor(feature, action, group))
+      const returned = await Promise.all(promises);
+
+      return returned.includes(true);
+    } else {
+
+      return false;
+    }
     /*const accessTokenAndCredentials = await this.accessTokenAndCredentials();
     const policyStoreId = environment.POLICYSTOREID;
     const petId = "dog123"
